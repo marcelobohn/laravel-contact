@@ -1,4 +1,4 @@
-@extends('contact.layout')
+@extends('layouts.app')
  
 @section('content')
 <h2 style="margin-top: 12px;" class="text-center">Edit Contact</a></h2>

@@ -1,8 +1,9 @@
-@extends('contact.layout')
+@extends('layouts.app')
    
 @section('content')
-  <a href="{{ route('contacts.create') }}" class="btn btn-success mb-2">New contact</a> 
-  <br>
+  @auth
+   <a href="{{ route('contacts.create') }}" class="btn btn-success mb-2">New contact</a><br>   
+  @endauth
    <div class="row">
         <div class="col-12">
           
@@ -13,7 +14,9 @@
                  <th>Name</th>
                  <th>Contact</th>
                  <th>Email</th>
-                 <th colspan="3">Actions</th>
+                 @auth
+                  <th colspan="3">Actions</th>
+                 @endauth
               </tr>
            </thead>
            <tbody>
@@ -23,15 +26,17 @@
                  <td>{{ $contact->name }}</td>
                  <td>{{ $contact->contact }}</td>
                  <td>{{ $contact->email }}</td>
-                 <td><a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a></td>
-                 <td><a href="{{ route('contacts.show',$contact->id)}}" class="btn btn-primary">Show</a></td>
-                 <td>
-                 <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
-                  {{ csrf_field() }}
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-                </td>
+                 @auth
+                  <td><a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a></td>
+                  <td><a href="{{ route('contacts.show',$contact->id)}}" class="btn btn-primary">Show</a></td>
+                  <td>
+                  <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
+                     {{ csrf_field() }}
+                     @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                     </form>
+                     </td>
+                  @endauth
               </tr>
               @endforeach
            </tbody>

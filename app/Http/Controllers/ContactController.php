@@ -9,6 +9,16 @@ use Redirect;
 class ContactController extends Controller
 {
     /**
+     * Protect access, except index.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
