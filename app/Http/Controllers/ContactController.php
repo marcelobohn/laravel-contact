@@ -99,7 +99,7 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required|min:5',
             'contact' => 'required|digits:9',
-            'email' => 'required|unique:contacts|regex:/^.+@.+$/i',
+            'email' => 'required|regex:/^.+@.+$/i',
         ]);
          
         $update = ['name' => $request->name, 'contact' => $request->contact, 'email' => $request->email];
