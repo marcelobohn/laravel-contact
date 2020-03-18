@@ -57,7 +57,10 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $where = array('id' => $id);
+        $data['contact_info'] = Contact::where($where)->first();
+ 
+        return view('contact.show', $data);
     }
 
     /**

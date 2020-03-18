@@ -13,7 +13,7 @@
                  <th>Name</th>
                  <th>Contact</th>
                  <th>Email</th>
-                 <th colspan="2">Actions</th>
+                 <th colspan="3">Actions</th>
               </tr>
            </thead>
            <tbody>
@@ -24,6 +24,7 @@
                  <td>{{ $contact->contact }}</td>
                  <td>{{ $contact->email }}</td>
                  <td><a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a></td>
+                 <td><a href="{{ route('contacts.show',$contact->id)}}" class="btn btn-primary">Show</a></td>
                  <td>
                  <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
                   {{ csrf_field() }}
