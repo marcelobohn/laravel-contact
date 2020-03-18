@@ -11,21 +11,21 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <strong>Title</strong>
+            <strong>Name</strong>
             <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ $contact_info->name }}">
             <span class="text-danger">{{ $errors->first('name') }}</span>
         </div>
     </div>
     <div class="col-md-12">
         <div class="form-group">
-            <strong>Title</strong>
+            <strong>Contact</strong>
             <input type="text" name="contact" class="form-control" placeholder="Enter contact" value="{{ $contact_info->contact }}">
-            <span class="text-danger">{{ $errors->first('name') }}</span>
+            <span class="text-danger">{{ $errors->first('contact') }}</span>
         </div>
     </div>
     <div class="col-md-12">
         <div class="form-group">
-            <strong>Title</strong>
+            <strong>Email</strong>
             <input type="text" name="email" class="form-control" placeholder="Enter email" value="{{ $contact_info->email }}">
             <span class="text-danger">{{ $errors->first('email') }}</span>
         </div>

@@ -39,11 +39,11 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'contact' => 'required',
-            'email' => 'required',
+            'name' => 'required|min:5',
+            'contact' => 'required|digits:9',
+            'email' => 'required|unique:contacts|regex:/^.+@.+$/i',
         ]);
-   
+        
         Contact::create($request->all());
     
         return Redirect::to('contacts')->with('success','Greate! Contact created successfully.');
@@ -87,9 +87,9 @@ class ContactController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'contact' => 'required',
-            'email' => 'required',
+            'name' => 'required|min:5',
+            'contact' => 'required|digits:9',
+            'email' => 'required|unique:contacts|regex:/^.+@.+$/i',
         ]);
          
         $update = ['name' => $request->name, 'contact' => $request->contact, 'email' => $request->email];
