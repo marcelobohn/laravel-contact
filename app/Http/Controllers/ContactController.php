@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use Redirect;
 
 class ContactController extends Controller
 {
@@ -26,7 +27,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact.create');
     }
 
     /**
@@ -37,7 +38,15 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'contact' => 'required',
+            'email' => 'required',
+        ]);
+   
+        Contact::create($request->all());
+    
+        return Redirect::to('contacts')->with('success','Greate! Contact created successfully.');
     }
 
     /**
@@ -59,7 +68,10 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $where = array('id' => $id);
+        $data['contact_info'] = Contact::where($where)->first();
+ 
+        return view('contact.edit', $data);
     }
 
     /**
@@ -71,7 +83,16 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'contact' => 'required',
+            'email' => 'required',
+        ]);
+         
+        $update = ['name' => $request->name, 'contact' => $request->contact, 'email' => $request->email];
+        Contact::where('id',$id)->update($update);
+   
+        return Redirect::to('contacts')->with('success','Great! Contact updated successfully');
     }
 
     /**
@@ -82,6 +103,8 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Contact::where('id',$id)->delete();
+   
+        return Redirect::to('contacts')->with('success','Product deleted successfully');
     }
 }
